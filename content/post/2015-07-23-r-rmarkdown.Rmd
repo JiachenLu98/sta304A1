@@ -1,0 +1,35 @@
+---
+title: "Toronto Apartment Air Conditioning Type"
+author: "Jiachen Lu"
+date: 2020-09-27T21:13:14-05:00
+bibliography: "references.bib"
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+```{r}
+library(opendatatoronto)
+library(dplyr)
+ 
+package <- show_package("2b98b3f3-4f3a-42a4-a4e9-b44d3026595a")
+package
+ 
+resources <- list_package_resources("2b98b3f3-4f3a-42a4-a4e9-b44d3026595a")
+ 
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+ 
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+data
+```
+
+
+# Abstraction
+My dataset is about Air conditioning information for the apartment in Toronto. We use @citetidyverse
+
+# Data Introduction
+We can conclude that most of the apartment in Toronto does not have air-conditioning. Rest of them are Central Air or Individual Unit. They are categorial varible and are nearly equal in amount.
+
+# Reference
